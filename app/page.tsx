@@ -31,8 +31,8 @@ export default async function Home({ searchParams }: { searchParams: FilterProps
           <SearchBar />
 
           <div className='home__filter-container'>
-            <CustomFilters title='fuel' options={fuels} />
-            <CustomFilters title='year' options={yearsOfProduction} />
+            <CustomFilters title='fuel' options={fuels} value={searchParams?.fuel || ""}/>
+            <CustomFilters title='year' options={yearsOfProduction} value={searchParams?.year?.toString() || ""}/>
           </div>
         </div>
 

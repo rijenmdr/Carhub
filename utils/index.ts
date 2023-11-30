@@ -61,3 +61,8 @@ export const updateSearchParams = (title: string, value: string) => {
 
     return newPathname;
 }
+
+export const capitalize = (string: string) => {
+    const capitalizeString = string?.charAt(0).toUpperCase() + string.slice(1);
+    return capitalizeString
+}

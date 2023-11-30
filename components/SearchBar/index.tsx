@@ -2,7 +2,7 @@
 import React, { FormEvent, useState } from 'react'
 import { SearchManufacturer } from '..'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 const SearchButton = ({ otherStyles }: { otherStyles: string }) => {
     return (
@@ -22,8 +22,12 @@ const SearchButton = ({ otherStyles }: { otherStyles: string }) => {
 }
 
 const SearchBar = () => {
-    const [manufacturer, setManufacturer] = useState("");
-    const [model, setModel] = useState("");
+    const searchParams = useSearchParams();
+    const makeFromParams = searchParams.get("manufacturer") || "";
+    const modelFromParams = searchParams.get("model") || "";
+
+    const [manufacturer, setManufacturer] = useState(makeFromParams);
+    const [model, setModel] = useState(modelFromParams);
 
     const router = useRouter();
 

@@ -1,7 +1,7 @@
   'use client'
 
   import { IOptions } from '@/types/car';
-  import { updateSearchParams } from '@/utils';
+  import { capitalize, updateSearchParams } from '@/utils';
   import { Listbox, Transition } from '@headlessui/react';
   import Image from 'next/image';
   import { useRouter } from 'next/navigation';
@@ -9,11 +9,14 @@
 
   interface IProps {
     title: string;
-    options: IOptions[]
+    options: IOptions[];
+    value: string;
   }
 
-  const CustomFilters = ({ title, options }: IProps) => {
-    const [selected, setSelected] = useState(options[0]);
+  const CustomFilters = ({ title, options, value }: IProps) => {
+    const paramsValue = value ? { title: capitalize(value), value } : null
+    const [selected, setSelected] = useState(paramsValue || options[0]);
+
     const router = useRouter();
 
     const handleUpdateParams = (e: IOptions) => {
